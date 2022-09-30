@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <title>SL Bus Allocation prediction</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='sri-lanka-flag-waving-icon-256.png') }}">
+
+    <link href="{{ url_for('static',filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
+          type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="{{ url_for('static',filename='css/bootstrap-select.css') }}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+    <!-- Custom styles for this template-->
+    <link href="{{ url_for('static',filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <style>
+        /* Various CSS stylings added  */
+        body {
+            background-color: #000000;
+        }
+        
+        form {
+            width: 1000px;
+            border: 1px solid gray;
+            padding: 20px;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        h1 {
+            color: #FFFF00;
+        }
+        
+        input {
+            width: 200px;
+        }
+
+
+
+
+
+    </style>
+</head>
+
+<body>
+<div class="login">
+    <!-- Main Heading added -->
+    <h1>Bus Allocation prediction </h1>
+
+    <!-- Form Code Starts which takes 4 features as input -->
+    <!-- The 4 features are - Glucose Rate, Insulin Rate, Body Mass Index, Age -->
+    <form action="/di" method="post">
+
+        <!===========================================================>
+        <div>
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                Route
+            </div>
+
+            <select class="selectpicker" name="route" required>
+                <option value="Negambo - Colombo">Negambo - Colombo</option>
+                <option value="colombo - Negambo">colombo - Negambo</option>
+                <option value="Ragama - Colombo">Ragama - Colombo</option>
+                <option value="colombo - Ragama">colombo - Ragama</option>
+                <option value="Mathara - Colombo">Mathara - Colombo</option>
+                <option value="colombo - matara">colombo - matara</option>
+                <option value="Kegalle - Colombo">Kegalle - Colombo</option>
+                <option value="colombo - Kegalle">colombo - Kegalle</option>
+                <option value="Kurunegala - Colombo">Kurunegala - Colombo</option>
+                <option value="colombo - Kurunegala">colombo - Kurunegala</option>
+                <option value="Vavuniaya - Colombo">Vavuniaya - Colombo</option>
+                <option value="colombo - Vavuniaya">colombo - Vavuniaya</option>
+
+                <br>
+            </select>
+            <br>
+            <!--===========================================================-->
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                time slot
+            </div>
+
+            <select class="selectpicker" name="time_slot" required>
+                <option value="6.00 - 8.00">6.00 - 8.00</option>
+                <option value="8.00 - 10.00">8.00 - 10.00</option>
+                <option value="10.00 - 12.00">10.00 - 12.00</option>
+                <option value="12.00 - 14.00">12.00 - 14.00</option>
+                <option value="14.00 - 16.00">14.00 - 16.00</option>
+                <option value="16.00 - 18.00">16.00 - 18.00</option>
+                <option value="18.00 - 20.00">18.00 - 20.00</option>
+                <option value="20.00 - 22.00">20.00 - 22.00</option>
+                <option value="22.00 - 24.00">22.00 - 24.00</option>
+
+            </select>
+            <br>
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                Bus crowd
+            </div>
+
+            <select class="selectpicker" name="bus_crowd" required>
+                <option value="low">low</option>
+                <option value="medium">medium</option>
+                <option value="high">high</option>
+            </select>
+            <br>
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                available buses
+            </div>
+
+            <select class="selectpicker" name="available_buses" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            <br>
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                type of bus
+            </div>
+
+            <select class="selectpicker" name="type_of_bus" required>
+                <option value="normal">normal</option>
+                <option value="AC">AC</option>
+            </select>
+            <br>
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                day name
+            </div>
+
+            <select class="selectpicker" name="day_name" required>
+                <option value="Sunday">Sunday</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Thursday</option>
+                <option value="Thursday">Friday</option>
+                <option value="Friday">K Nearest Neighbors (KNN)</option>
+                <option value="Saturday">Decision Trees</option>
+            </select>
+            <br>
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                is Weekday
+            </div>
+
+            <select class="selectpicker" name="is_Weekday" required>
+                <option value="no">no</option>
+                <option value="yes">yes</option>
+            </select>
+            <br>
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                day type
+            </div>
+
+            <select class="selectpicker" name="day_type" required>
+                <option value="normal">normal</option>
+                <option value="poya">poya</option>
+                <option value="Thai Pongal">Thai Pongal</option>
+                <option value="Sinhala and Tamil New Year">Sinhala and Tamil New Year</option>
+                <option value="Vesak">Vesak</option>
+                <option value="Christmas Day">Christmas Day</option>
+                <option value="Deepavali">Deepavali</option>
+            </select>
+            <br>
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                is holiday
+            </div>
+
+            <select class="selectpicker" name="is_holiday" required>
+                <option value="yes">yes</option>
+                <option value="no">no</option>
+            </select>
+            <br>
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                trafic
+            </div>
+
+            <select class="selectpicker" name="trafic" required>
+                <option value="low">low</option>
+                <option value="medium">medium</option>
+                <option value="high">high</option>
+            </select>
+            <br>
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                available_bus_drivers
+            </div>
+
+            <select class="selectpicker" name="available_bus_drivers" required>
+                <option value="enough">enough</option>
+                <option value="no">no</option>
+
+            </select>
+            <br>
+            <!===========================================================>
+
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                weather
+            </div>
+
+            <select class="selectpicker" name="weather" required>
+                <option value="normal">normal</option>
+                <option value="rain">rain</option>
+            </select>
+            <br>
+            <!===========================================================>
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                route_condition
+            </div>
+
+            <select class="selectpicker" name="route_condition" required>
+                <option value="good">good</option>
+                <option value="slippery">slippery</option>
+
+            </select>
+            <br>
+            <!===========================================================>
+
+            <!===========================================================>
+
+            <div class="sidebar-brand-text mx-3" style="color:white;">
+                busy reason
+            </div>
+
+            <select class="selectpicker" name="busy_reason" required>
+                <option value="normal">normal</option>
+                <option value="school">school</option>
+                <option value="school,normal">school,normal</option>
+                <option value="office">office</option>
+                <option value="DT">office,school</option>
+            </select>
+
+            <br> <!===========================================================>
+
+            <br>
+            <br>
+            <br>
+
+        </div>
+        <input type="submit" class="btn btn-primary btn-block btn-large" value="Predict">
+
+    </form>
+
+    <br>
+    <br>
+    <!-- The variable which stores and displays the prediction to the user -->
+    {{ prediction_text1 }}
+
+</div>
+
+
+</body>
+
+</html>
